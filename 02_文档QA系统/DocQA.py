@@ -13,7 +13,7 @@ from langchain.document_loaders import Docx2txtLoader
 from langchain.document_loaders import TextLoader
 
 # 加载Documents
-base_dir = '.\OneFlower' # 文档的存放目录
+base_dir = '.\\02_文档QA系统\OneFlower' # 文档的存放目录
 documents = []
 for file in os.listdir(base_dir): 
     # 构建完整的文件路径
@@ -59,7 +59,7 @@ llm = ChatOpenAI(model_name="gpt-3.5-turbo", temperature=0)
 retriever_from_llm = MultiQueryRetriever.from_llm(retriever=vectorstore.as_retriever(), llm=llm)
 
 # 实例化一个RetrievalQA链
-qa_chain = RetrievalQA.from_chain_type(llm,retriever=retriever_from_llm)
+qa_chain = RetrievalQA.from_chain_type(llm,retriever=retriever_from_llm, verbose=True)
 
 # 5. Output 问答系统的UI实现
 from flask import Flask, request, render_template
@@ -74,7 +74,7 @@ def home():
         
         # RetrievalQA链 - 读入问题，生成答案
         result = qa_chain({"query": question})
-        
+        print(result)
         # 把大模型的回答结果返回网页进行渲染
         return render_template('index.html', result=result)
     
