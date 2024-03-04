@@ -1,4 +1,6 @@
 # 导入所需的库
+from dotenv import load_dotenv  # 用于加载环境变量
+load_dotenv()  # 加载 .env 文件中的环境变量
 import os
 import gradio as gr
 from langchain.text_splitter import RecursiveCharacterTextSplitter
@@ -11,8 +13,6 @@ from langchain.document_loaders import PyPDFLoader
 from langchain.document_loaders import Docx2txtLoader
 from langchain.document_loaders import TextLoader
 
-# 设置OpenAI API密钥
-os.environ["OPENAI_API_KEY"] = 'Your Key'  
 
 class ChatbotWithRetrieval:
     def __init__(self, dir):

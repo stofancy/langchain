@@ -10,9 +10,11 @@ from langchain.chains import ConversationalRetrievalChain
 from langchain.document_loaders import PyPDFLoader
 from langchain.document_loaders import Docx2txtLoader
 from langchain.document_loaders import TextLoader
+from dotenv import load_dotenv  # 用于加载环境变量
+load_dotenv()  # 加载 .env 文件中的环境变量
 
 # 设置OpenAI API密钥
-os.environ["OPENAI_API_KEY"] = 'Your Key'  
+# os.environ["OPENAI_API_KEY"] = 'Your Key'  
 
 # ChatBot类的实现
 class ChatbotWithRetrieval:
